@@ -284,6 +284,11 @@ public class FakeHttpLayer {
             return this;
         }
 
+        public RequestMatcherBuilder param(String name, Object value) {
+            params.put(name, value.toString());
+            return this;
+        }
+
         public RequestMatcherBuilder noParams() {
             noParams = true;
             return this;
