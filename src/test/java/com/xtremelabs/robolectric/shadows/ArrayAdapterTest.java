@@ -2,7 +2,6 @@
 
 package com.xtremelabs.robolectric.shadows;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import com.xtremelabs.robolectric.R;
 import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.WithTestDefaultsRunner;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +16,7 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -95,5 +94,26 @@ public class ArrayAdapterTest {
         assertEquals(2, arrayAdapter.getCount());
         assertEquals(new Integer(2), arrayAdapter.getItem(0));
         assertEquals(new Integer(3), arrayAdapter.getItem(1));
+    }
+
+    @Test
+    public void test_sort() throws Exception {
+        arrayAdapter.add(5);
+        arrayAdapter.add(4);
+
+        assertEquals(5, arrayAdapter.getCount());
+        assertEquals(new Integer(5), arrayAdapter.getItem(3));
+        assertEquals(new Integer(4), arrayAdapter.getItem(4));
+
+        arrayAdapter.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer integer, Integer otherInteger) {
+                return integer.compareTo(otherInteger);
+            }
+        });
+
+        assertEquals(5, arrayAdapter.getCount());
+        assertEquals(new Integer(4), arrayAdapter.getItem(3));
+        assertEquals(new Integer(5), arrayAdapter.getItem(4));
     }
 }
