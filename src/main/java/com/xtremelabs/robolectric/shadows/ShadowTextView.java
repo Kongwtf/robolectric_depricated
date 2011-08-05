@@ -82,6 +82,11 @@ public class ShadowTextView extends ShadowView {
     }
 
     @Implementation
+    public final void setHint(CharSequence hint) {
+        hintText = hint;
+    }
+
+    @Implementation
     public void setTextAppearance(Context context, int resid) {
         textAppearanceId = resid;
     }

@@ -110,7 +110,16 @@ public class TextViewTest {
         assertThat(grey.getText().toString(), equalTo("Grey Text"));
         assertThat(shadowOf(grey).getTextColorHexValue(), equalTo(activity.getResources().getColor(R.color.grey42)));
     }
-    
+
+    @Test
+    public void test_setHint() throws Exception {
+        TextView textView = new TextView(null);
+        assertNull(textView.getHint());
+
+        textView.setHint("foo");
+        assertThat(textView.getHint().toString(), equalTo("foo"));
+    }
+
     private List<String> urlStringsFrom(URLSpan[] urlSpans) {
         List<String> urls = new ArrayList<String>();
         for (URLSpan urlSpan : urlSpans) {
