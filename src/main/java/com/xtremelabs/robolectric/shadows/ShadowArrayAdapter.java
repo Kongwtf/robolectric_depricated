@@ -1,5 +1,11 @@
 package com.xtremelabs.robolectric.shadows;
 
+import static com.xtremelabs.robolectric.Robolectric.shadowOf;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +20,6 @@ import com.xtremelabs.robolectric.res.ResourceLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import static com.xtremelabs.robolectric.Robolectric.shadowOf;
@@ -80,11 +85,6 @@ public class ShadowArrayAdapter<T> extends ShadowBaseAdapter {
     }
 
     @Implementation
-    public void sort(Comparator<? super T> comparator) {
-        Collections.sort(list, comparator);
-    }
-
-    @Implementation
     public void add(T object) {
         list.add(object);
     }
@@ -97,6 +97,11 @@ public class ShadowArrayAdapter<T> extends ShadowBaseAdapter {
     @Implementation
     public void insert(T object, int index) {
         list.add(index, object);
+    }
+
+    @Implementation
+    public void sort(java.util.Comparator<? super T> comparator) {
+        Collections.sort(list, comparator);
     }
 
     @Implementation
