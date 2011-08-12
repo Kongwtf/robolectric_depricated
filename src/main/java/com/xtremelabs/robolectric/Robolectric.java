@@ -1029,6 +1029,19 @@ public class Robolectric {
                 throw new RuntimeException(e);
             }
         }
+
+        public static <T> T getPrivateMember(Object obj, String name) {
+            try {
+                Field f = obj.getClass().getDeclaredField(name);
+                f.setAccessible(true);
+                //noinspection unchecked
+                return (T) f.get(obj);
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
