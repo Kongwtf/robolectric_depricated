@@ -232,7 +232,7 @@ public class ShadowAlertDialog extends ShadowDialog {
 
         @Implementation
         public AlertDialog.Builder setTitle(CharSequence title) {
-            this.title = title.toString();
+            this.title = (title == null) ? null : title.toString();
             return realBuilder;
         }
 
