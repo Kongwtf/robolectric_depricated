@@ -52,6 +52,11 @@ public class ShadowTextView extends ShadowView {
     }
 
     @Implementation
+    public final void append(CharSequence text) {
+        setText(getText() + text.toString());
+    }
+
+    @Implementation
     public void setText(int textResourceId) {
         this.text = getResources().getText(textResourceId);
     }
