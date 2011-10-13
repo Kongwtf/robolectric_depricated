@@ -67,9 +67,12 @@ public class ShadowHtml {
         }
 
         @Override
-        public boolean equals(Object o) {
-            return source.equals(o);
-        }
+		public boolean equals(Object o) {
+			if (o instanceof SpannedThatActsLikeString)
+				return source.equals(((SpannedThatActsLikeString) o).source);
+			else
+				return source.equals(o);
+		}
 
         @Override
         public int hashCode() {
